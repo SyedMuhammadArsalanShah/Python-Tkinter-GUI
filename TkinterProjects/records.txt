@@ -1,1 +1,1 @@
-('smas', '123', '03031234567', 'cash', 'karachi', 1)
+('smas', '123', '03031234567', 'cash', 'karachi', 1)('ammarah', '123', '33', 'cash', 'khi', 1)

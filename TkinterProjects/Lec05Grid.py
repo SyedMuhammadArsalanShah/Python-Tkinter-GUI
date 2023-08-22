@@ -2,7 +2,7 @@ from  tkinter import *
 
 def getvals():
    print(f"{userval.get(),passval.get(),phoneval.get(),paymentmodeval.get(),addressval.get(),checkboxval.get()}")
-   with open("records.xlsx","a") as a:
+   with open("records.txt","a") as a:
        a.write(f"{userval.get(),passval.get(),phoneval.get(),paymentmodeval.get(),addressval.get(),checkboxval.get()}")
 
 
