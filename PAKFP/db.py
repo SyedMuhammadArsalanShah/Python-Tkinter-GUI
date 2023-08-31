@@ -69,7 +69,7 @@ def fetchdata(table_name):
 
     return  showdata
 
-
+# lost of card info insert
 def inserttableLOF(Name,FatherName ,CNIC_no ,phone_Number ,DateofMissing , PNo, card):
     conn=sql.connect("PAK.db")
     cursor=conn.cursor()
@@ -81,6 +81,8 @@ def inserttableLOF(Name,FatherName ,CNIC_no ,phone_Number ,DateofMissing , PNo, 
     conn.close()
 
 
+
+# lost of card info update
 def updatetableLOF(Name, FatherName, CNIC_no, phone_Number, DateofMissing, PNo, card, id):
     conn = sql.connect("PAK.db")
     cursor = conn.cursor()
@@ -90,6 +92,71 @@ def updatetableLOF(Name, FatherName, CNIC_no, phone_Number, DateofMissing, PNo, 
     ''', (Name, FatherName, CNIC_no, phone_Number, DateofMissing, PNo, card, id))
     conn.commit()
     conn.close()
+
+
+# lost of vehicle info insert
+def inserttableLOV(Name, FatherName, CNIC_no, phone_Number, DateofMissing, PNo, registration):
+    conn = sql.connect("PAK.db")
+    cursor = conn.cursor()
+    cursor.execute('''
+    INSERT INTO LOSTOFVEHICLEINFO(Name,FatherName ,CNIC_no ,phone_Number ,DateofMissing , PNo, REGISTRATION_NUMBER) Values(?,?,?,?,?,?,?)
+    ''', (Name, FatherName, CNIC_no, phone_Number, DateofMissing, PNo, registration))
+
+    conn.commit()
+    conn.close()
+
+
+# lost of vehicle info  update
+def updatetableLOV(Name, FatherName, CNIC_no, phone_Number, DateofMissing, PNo, registration, id):
+    conn = sql.connect("PAK.db")
+    cursor = conn.cursor()
+    cursor.execute('''
+
+    UPDATE LOSTOFVEHICLEINFO SET Name=?,FatherName=? ,CNIC_no=? ,phone_Number=? ,DateofMissing =?, PNo=?  , REGISTRATION_NUMBER =? WHERE ID = ? 
+    ''', (Name, FatherName, CNIC_no, phone_Number, DateofMissing, PNo, registration, id))
+    conn.commit()
+    conn.close()
+
+# Insert method for blacklisted firms
+def inserttableBLF(Name, FatherName, CNIC_no, phone_Number, firm_Name, PNo):
+    conn = sql.connect("PAK.db")
+    cursor = conn.cursor()
+    cursor.execute('''
+    INSERT INTO blacklistedfirmsINFO(Name, FatherName, CNIC_no, phone_Number, firm_Name, PNo) VALUES(?, ?, ?, ?, ?, ?)
+    ''', (Name, FatherName, CNIC_no, phone_Number, firm_Name, PNo))
+    conn.commit()
+    conn.close()
+
+# Update method for blacklisted firms
+def updatetableBLF(Name, FatherName, CNIC_no, phone_Number, firm_Name, PNo, id):
+    conn = sql.connect("PAK.db")
+    cursor = conn.cursor()
+    cursor.execute('''
+    UPDATE blacklistedfirmsINFO SET Name=?, FatherName=?, CNIC_no=?, phone_Number=?, firm_Name=?, PNo=? WHERE ID=?
+    ''', (Name, FatherName, CNIC_no, phone_Number, firm_Name, PNo, id))
+    conn.commit()
+    conn.close()
+
+# Insert method for blacklisted personnel
+def inserttableBLP(Name, FatherName, CNIC_no, phone_Number, dateofBlacklist, PNo, reasonofblacklist):
+    conn = sql.connect("PAK.db")
+    cursor = conn.cursor()
+    cursor.execute('''
+    INSERT INTO blacklistedpersonnelinfo(Name, FatherName, CNIC_no, phone_Number,DateofBlacklist, PNo, reasonofblacklist) VALUES(?, ?, ?,? ,?, ?, ?)
+    ''', (Name, FatherName, CNIC_no, phone_Number, dateofBlacklist,PNo, reasonofblacklist))
+    conn.commit()
+    conn.close()
+
+# Update method for blacklisted personnel
+def updatetableBLP(Name, FatherName, CNIC_no, phone_Number,dateofBlacklist, PNo, reasonofblacklist, id):
+    conn = sql.connect("PAK.db")
+    cursor = conn.cursor()
+    cursor.execute('''
+    UPDATE blacklistedpersonnelinfo SET Name=?, FatherName=?, CNIC_no=?, phone_Number=?,DateofBlacklist=?, PNo=?, reasonofblacklist=? WHERE ID=?
+    ''', (Name, FatherName, CNIC_no, phone_Number,dateofBlacklist ,PNo, reasonofblacklist, id))
+    conn.commit()
+    conn.close()
+
 
 def deletetable(tablename, id):
     conn=sql.connect("PAK.db")
@@ -106,22 +173,6 @@ def id_exists(tblname,cnic, pno):
     if cursor.fetchone() is not None:
         messagebox.showerror("error", "CNIC No OR Pno Already exist ")
     conn.close()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 connection_db()
